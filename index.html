@@ -1,63 +1,74 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" id="main-html">
 <head>
     <meta charset="UTF-8">
-    <title>SENTINEL-X Store</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTINEL-X | Private Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
-    <div id="app" :class="themeColor">
-        <header>
-            <div class="user-stats">
-                <span>النقاط: {{ user_points }} 🪙</span>
-                <button @click="changeLang">اللغة: {{ currentLang }}</button>
-            </div>
-            <h1>متجر النينجا الأحمر 🥷</h1>
-        </header>
-
-        <section class="gift-section">
-            <button @click="claimDaily" :disabled="claimed">🎁 استلام الهدية اليومية</button>
-        </section>
-
-        <main class="grid-container">
-            <div v-for="item in items" :key="item.id" class="card">
-                <h3>{{ item.name }}</h3>
-                <p>السعر: {{ item.price }} نقطة</p>
-                <button class="buy-btn">شراء الآن</button>
-            </div>
-        </main>
-
-        <div class="referral-box">
-            <p>رابط الدعوة الخاص بك (100 نقطة لكل صديق):</p>
-            <code>https://sentinel-x.com/invite/user123</code>
+<body class="red-theme">
+    <div class="sidebar">
+        <div class="logo">
+            <img src="ninja-logo.png" alt="Ninja">
+            <h2>SENTINEL-X</h2>
         </div>
-
-        <div class="color-picker">
-            <button @click="themeColor = 'red-theme'">🔴</button>
-            <button @click="themeColor = 'blue-theme'">🔵</button>
-            <button @click="themeColor = 'green-theme'">🟢</button>
+        <nav>
+            <a href="#"><i class="fas fa-home"></i> المتجر</a>
+            <a href="#"><i class="fas fa-code"></i> البرمجة</a>
+            <a href="#"><i class="fas fa-user-secret"></i> الاختراق</a>
+            <a href="#"><i class="fas fa-chart-line"></i> التداول</a>
+        </nav>
+        <div class="lang-switch">
+            <button onclick="changeLang('ar')">AR</button>
+            <button onclick="changeLang('en')">EN</button>
+            <button onclick="changeLang('fr')">FR</button>
         </div>
     </div>
 
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                themeColor: 'red-theme',
-                currentLang: 'العربية',
-                user_points: 100,
-                claimed: false,
-                items: [
-                    {id: 1, name: 'دورة الاختراق المتقدمة', price: 200},
-                    {id: 2, name: 'أداة IPGRAM Python', price: 50}
-                ]
-            },
-            methods: {
-                changeLang() { /* منطق تغيير اللغات */ },
-                claimDaily() { this.user_points += 20; this.claimed = true; }
-            }
-        });
-    </script>
+    <div class="main-content">
+        <header>
+            <div class="user-info">
+                <div class="points-card">
+                    <span id="points-count">100</span>
+                    <small>نقطة (هدية البداية)</small>
+                </div>
+                <button class="gift-btn" onclick="claimDaily()">🎁 الهدية اليومية</button>
+            </div>
+            <div class="theme-selector">
+                <div class="dot red" onclick="setTheme('red')"></div>
+                <div class="dot blue" onclick="setTheme('blue')"></div>
+                <div class="dot green" onclick="setTheme('green')"></div>
+            </div>
+        </header>
+
+        <section class="store-grid">
+            <div class="card cyber-card">
+                <div class="card-badge">Tool</div>
+                <h3>IPGRAM Extractor</h3>
+                <p>سحب الآيبي عبر انستغرام - نسخة Pydroid</p>
+                <div class="price">40 🪙</div>
+                <button class="buy-btn">تحميل الملف مباشر</button>
+            </div>
+
+            <div class="card cyber-card">
+                <div class="card-badge">Course</div>
+                <h3>احتراف التداول</h3>
+                <p>من الصفر إلى صفقات الـ Scalping</p>
+                <div class="price">150 🪙</div>
+                <button class="buy-btn">دخول الأكاديمية</button>
+            </div>
+        </section>
+
+        <div class="invite-section">
+            <h4>رابط الدعوة الخاص بك</h4>
+            <div class="copy-box">
+                <input type="text" value="https://sentinel-x.app/invite/wxl_e" readonly>
+                <button>نسخ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
