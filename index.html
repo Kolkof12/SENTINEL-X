@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>SENTINEL-X Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app" :class="themeColor">
+        <header>
+            <div class="user-stats">
+                <span>النقاط: {{ user_points }} 🪙</span>
+                <button @click="changeLang">اللغة: {{ currentLang }}</button>
+            </div>
+            <h1>متجر النينجا الأحمر 🥷</h1>
+        </header>
+
+        <section class="gift-section">
+            <button @click="claimDaily" :disabled="claimed">🎁 استلام الهدية اليومية</button>
+        </section>
+
+        <main class="grid-container">
+            <div v-for="item in items" :key="item.id" class="card">
+                <h3>{{ item.name }}</h3>
+                <p>السعر: {{ item.price }} نقطة</p>
+                <button class="buy-btn">شراء الآن</button>
+            </div>
+        </main>
+
+        <div class="referral-box">
+            <p>رابط الدعوة الخاص بك (100 نقطة لكل صديق):</p>
+            <code>https://sentinel-x.com/invite/user123</code>
+        </div>
+
+        <div class="color-picker">
+            <button @click="themeColor = 'red-theme'">🔴</button>
+            <button @click="themeColor = 'blue-theme'">🔵</button>
+            <button @click="themeColor = 'green-theme'">🟢</button>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                themeColor: 'red-theme',
+                currentLang: 'العربية',
+                user_points: 100,
+                claimed: false,
+                items: [
+                    {id: 1, name: 'دورة الاختراق المتقدمة', price: 200},
+                    {id: 2, name: 'أداة IPGRAM Python', price: 50}
+                ]
+            },
+            methods: {
+                changeLang() { /* منطق تغيير اللغات */ },
+                claimDaily() { this.user_points += 20; this.claimed = true; }
+            }
+        });
+    </script>
+</body>
+</html>
