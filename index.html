@@ -1,74 +1,50 @@
 <!DOCTYPE html>
-<html lang="ar" id="main-html">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENTINEL-X | Private Academy</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>SENTINEL-X | THE BEAST STORE</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
-<body class="red-theme">
-    <div class="sidebar">
-        <div class="logo">
-            <img src="ninja-logo.png" alt="Ninja">
-            <h2>SENTINEL-X</h2>
+<body class="red-mode">
+    <nav class="cyber-nav">
+        <div class="points-tag">BALANCE: <span id="pt">{{ points }}</span> PTS</div>
+        <div class="lang-picker">
+            <button onclick="setLang('ar')">AR</button>
+            <button onclick="setLang('en')">EN</button>
+            <button onclick="setLang('fr')">FR</button>
         </div>
-        <nav>
-            <a href="#"><i class="fas fa-home"></i> المتجر</a>
-            <a href="#"><i class="fas fa-code"></i> البرمجة</a>
-            <a href="#"><i class="fas fa-user-secret"></i> الاختراق</a>
-            <a href="#"><i class="fas fa-chart-line"></i> التداول</a>
-        </nav>
-        <div class="lang-switch">
-            <button onclick="changeLang('ar')">AR</button>
-            <button onclick="changeLang('en')">EN</button>
-            <button onclick="changeLang('fr')">FR</button>
+    </nav>
+
+    <div class="container">
+        <h1 class="glitch" data-text="WXL_E ACADEMY">WXL_E ACADEMY</h1>
+        
+        <div class="gift-area">
+            <button onclick="getGift()" id="giftBtn">🎁 DAILY REWARD</button>
         </div>
-    </div>
 
-    <div class="main-content">
-        <header>
-            <div class="user-info">
-                <div class="points-card">
-                    <span id="points-count">100</span>
-                    <small>نقطة (هدية البداية)</small>
-                </div>
-                <button class="gift-btn" onclick="claimDaily()">🎁 الهدية اليومية</button>
+        <div class="grid">
+            {% for tool in tools %}
+            <div class="tool-card">
+                <div class="status">ENCRYPTED</div>
+                <h3>{{ tool.name }}</h3>
+                <p>{{ tool.desc }}</p>
+                <div class="cost">{{ tool.points }} PTS</div>
+                <button class="buy-btn" onclick="buy('{{ tool.id }}')">GET SOURCE (.PY)</button>
             </div>
-            <div class="theme-selector">
-                <div class="dot red" onclick="setTheme('red')"></div>
-                <div class="dot blue" onclick="setTheme('blue')"></div>
-                <div class="dot green" onclick="setTheme('green')"></div>
-            </div>
-        </header>
-
-        <section class="store-grid">
-            <div class="card cyber-card">
-                <div class="card-badge">Tool</div>
-                <h3>IPGRAM Extractor</h3>
-                <p>سحب الآيبي عبر انستغرام - نسخة Pydroid</p>
-                <div class="price">40 🪙</div>
-                <button class="buy-btn">تحميل الملف مباشر</button>
-            </div>
-
-            <div class="card cyber-card">
-                <div class="card-badge">Course</div>
-                <h3>احتراف التداول</h3>
-                <p>من الصفر إلى صفقات الـ Scalping</p>
-                <div class="price">150 🪙</div>
-                <button class="buy-btn">دخول الأكاديمية</button>
-            </div>
-        </section>
-
-        <div class="invite-section">
-            <h4>رابط الدعوة الخاص بك</h4>
-            <div class="copy-box">
-                <input type="text" value="https://sentinel-x.app/invite/wxl_e" readonly>
-                <button>نسخ</button>
-            </div>
+            {% endfor %}
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function setTheme(color) { document.body.className = color + '-mode'; }
+        
+        function getGift() {
+            // منطق إضافة النقاط (20 نقطة)
+            alert("تم إضافة 20 نقطة لحسابك!");
+        }
+
+        function buy(id) {
+            window.location.href = '/download/' + id;
+        }
+    </script>
 </body>
 </html>
