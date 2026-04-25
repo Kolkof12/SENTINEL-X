@@ -1,78 +1,54 @@
 :root {
-    --bg-dark: #050505;
-    --card-bg: rgba(20, 20, 20, 0.8);
-    --accent: #ff0000;
-    --text-main: #ffffff;
-    --text-dim: #b0b0b0;
+    --cyber-red: #ff003c;
+    --cyber-blue: #00d4ff;
+    --cyber-green: #39ff14;
+    --bg-black: #020202;
+    --card-bg: #0d0d0d;
 }
 
 body {
-    background: var(--bg-dark);
-    color: var(--text-main);
-    font-family: 'Cairo', sans-serif;
-    display: flex;
+    background-color: var(--bg-black);
+    color: white;
+    font-family: 'Orbitron', sans-serif; /* خط تقني */
     margin: 0;
+    overflow-x: hidden;
 }
 
-/* Sidebar */
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    background: #000;
-    border-right: 1px solid var(--accent);
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    position: fixed;
+/* بطاقة النقاط المتميزة */
+.points-tag {
+    background: linear-gradient(90deg, var(--cyber-red), #550000);
+    padding: 10px 20px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 0 15px var(--cyber-red);
 }
 
-/* Cyber Card - البطاقة المطلوبة */
-.cyber-card {
+/* الـ Card المطلوبة (Beast Style) */
+.tool-card {
     background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: 4px solid var(--accent);
-    padding: 25px;
-    border-radius: 10px;
+    border: 1px solid #1a1a1a;
+    padding: 20px;
     position: relative;
-    overflow: hidden;
-    transition: 0.4s;
-    backdrop-filter: blur(10px);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%); /* زوايا مقطوعة احترافية */
+    transition: 0.3s;
 }
 
-.cyber-card:hover {
-    box-shadow: 0 0 30px var(--accent);
-    transform: scale(1.02);
+.tool-card:hover {
+    border-color: var(--cyber-red);
+    box-shadow: inset 0 0 15px rgba(255, 0, 60, 0.2), 0 0 20px var(--cyber-red);
 }
 
-.card-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--accent);
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 4px;
-}
-
-/* ألوان السمات */
-.blue-theme { --accent: #0084ff; }
-.green-theme { --accent: #00ff88; }
-.red-theme { --accent: #ff0000; }
-
-/* زر التحميل/الشراء */
 .buy-btn {
-    width: 100%;
-    padding: 12px;
-    background: none;
-    border: 1px solid var(--accent);
-    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--cyber-red);
+    color: var(--cyber-red);
     cursor: pointer;
-    text-transform: uppercase;
+    padding: 10px;
+    width: 100%;
     font-weight: bold;
-    margin-top: 15px;
+    letter-spacing: 2px;
 }
 
 .buy-btn:hover {
-    background: var(--accent);
-    color: #000;
+    background: var(--cyber-red);
+    color: black;
 }
